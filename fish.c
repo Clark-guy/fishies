@@ -9,7 +9,7 @@
 #define ASCII_ESC 27
 #define SCREEN_WIDTH 20
 #define SCREEN_HEIGHT 10
-#define SLEEP_TIME 300000
+#define SLEEP_TIME 100000
 
 //for the life of me, I can't recall why I made the directions chars. Seems really stupid now if you ask me
 typedef struct{
@@ -21,24 +21,32 @@ typedef struct{
 
 
 int updateScreen(fish *fishy){
+    int skipTwo = 0;
 	//print all the shit
     for(int y=0;y<SCREEN_HEIGHT;y++){
 		printf("\n");
 		fflush(stdout);
 		usleep(10);
 		for(int x=0;x<SCREEN_WIDTH;x++){
-			if(fishy->xLoc==x && fishy->yLoc==y)
+			if(fishy->xLoc==x && fishy->yLoc==y){
+                skipTwo = 2;
                 if(fishy->xDir == 'l')
                     printf("<><");
                 else
                     printf("><>");
-			else if(y==0) 
-                printf("_");
-            else if(x==0 || x==SCREEN_WIDTH-1 || y==SCREEN_HEIGHT-1)
-                printf("|");
-            else
-				printf(" "); //better way to do this - add to a char[] and then print that? use put maybe?
-			fflush(stdout);
+            }
+            else if(skipTwo > 0){
+                skipTwo--;
+            }
+            else{
+                if(y==0) 
+                    printf("_");
+                else if(x==0 || x==SCREEN_WIDTH-1 || y==SCREEN_HEIGHT-1)
+                    printf("|");
+                else
+                    printf(" "); //better way to do this - add to a char[] and then print that? use put maybe?
+                fflush(stdout);
+            }
 		}
 	}
 	
