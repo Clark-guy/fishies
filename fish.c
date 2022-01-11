@@ -91,6 +91,7 @@ void printDebug(fish *fishy){
     printf("y loc: %d\n", fishy->yLoc);
 }
 
+//change implementation for multiple fish- have functions take arrays of fish as arguments
 int main(){
 	int rc;
 	fish *fishy = (fish*)malloc(sizeof(fish));
