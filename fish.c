@@ -1,4 +1,4 @@
-// Animation in C 
+// Fish ASCII animation in C 
 //
 //
 
@@ -29,12 +29,12 @@ int updateScreen(fish *fishy){
 		for(int x=0;x<SCREEN_WIDTH;x++){
 			if(fishy->xLoc==x && fishy->yLoc==y)
                 if(fishy->xDir == 'l')
-                    printf("<");
+                    printf("<><");
                 else
-                    printf(">");
-			else if(y==0 || y==SCREEN_HEIGHT-1)
+                    printf("><>");
+			else if(y==0) 
                 printf("_");
-            else if(x==0 || x==SCREEN_WIDTH-1)
+            else if(x==0 || x==SCREEN_WIDTH-1 || y==SCREEN_HEIGHT-1)
                 printf("|");
             else
 				printf(" "); //better way to do this - add to a char[] and then print that? use put maybe?
@@ -54,16 +54,16 @@ int updateScreen(fish *fishy){
 
 int updateFish(fish *fishy, int xSize, int ySize){
     //turning fish around
-	if(fishy->xLoc>=xSize-1){
+	if(fishy->xLoc>=xSize-4){
 		fishy->xDir = 'l';
 	}
-	else if(fishy->xLoc<=0){
+	else if(fishy->xLoc<=1){
 		fishy->xDir = 'r';
 	}
-    if(fishy->yLoc>=ySize-1){
+    if(fishy->yLoc>=ySize-2){
         fishy->yDir = 'u';
     }
-    else if(fishy->yLoc<=0){
+    else if(fishy->yLoc<=1){
         fishy->yDir = 'd';
     }
     //moving fish forward
