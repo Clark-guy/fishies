@@ -11,10 +11,12 @@
 #define SCREEN_HEIGHT 10
 #define SLEEP_TIME 300000
 
+//for the life of me, I can't recall why I made the directions chars. Seems really stupid now if you ask me
 typedef struct{
 	int xLoc;
 	int yLoc;
-	char dir;
+	char xDir;
+	char yDir;
 } fish;
 
 
@@ -44,13 +46,25 @@ int updateScreen(fish *fishy){
 }
 
 int updateFish(fish *fishy, int xSize, int ySize){
+    //turning fish around
 	if(fishy->xLoc>=xSize-1){
-		fishy->dir = 'l';
+		fishy->xDir = 'l';
 	}
 	else if(fishy->xLoc<=0){
-		fishy->dir = 'r';
+		fishy->xDir = 'r';
 	}
-	if(fishy->dir=='l')
+    if(fishy->yLoc>=ySize-1){
+        fishy->yDir = 'u';
+    }
+    else if(fishy->yLoc<=0){
+        fishy->yDir = 'd';
+    }
+    //moving fish forward
+	if(fishy->yDir=='u')
+		fishy->yLoc--;
+	else
+		fishy->yLoc++;
+	if(fishy->xDir=='l')
 		fishy->xLoc--;
 	else
 		fishy->xLoc++;
