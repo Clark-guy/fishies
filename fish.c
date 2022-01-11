@@ -28,9 +28,16 @@ int updateScreen(fish *fishy){
 		usleep(10);
 		for(int x=0;x<SCREEN_WIDTH;x++){
 			if(fishy->xLoc==x && fishy->yLoc==y)
-				printf(" ");
-			else
-				printf("o"); //better way to do this - add to a char[] and then print that? use put maybe?
+                if(fishy->xDir == 'l')
+                    printf("<");
+                else
+                    printf(">");
+			else if(y==0 || y==SCREEN_HEIGHT-1)
+                printf("_");
+            else if(x==0 || x==SCREEN_WIDTH-1)
+                printf("|");
+            else
+				printf(" "); //better way to do this - add to a char[] and then print that? use put maybe?
 			fflush(stdout);
 		}
 	}
