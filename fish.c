@@ -7,8 +7,8 @@
 #include <unistd.h>
 
 #define ASCII_ESC 27
-#define SCREEN_WIDTH 20
-#define SCREEN_HEIGHT 10
+#define SCREEN_WIDTH 45
+#define SCREEN_HEIGHT 20
 #define SLEEP_TIME 100000
 
 //for the life of me, I can't recall why I made the directions chars. Seems really stupid now if you ask me
