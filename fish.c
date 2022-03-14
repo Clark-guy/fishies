@@ -15,8 +15,8 @@
 typedef struct{
 	int xLoc;
 	int yLoc;
-	char xDir;
-	char yDir;
+	int xDir;
+	int yDir;
 } fish;
 
 
@@ -30,7 +30,7 @@ int updateScreen(fish *fishy){
 		for(int x=0;x<SCREEN_WIDTH;x++){
 			if(fishy->xLoc==x && fishy->yLoc==y){
                 skipTwo = 2;
-                if(fishy->xDir == 'l')
+                if(fishy->xDir == 0)
                     printf("<><");
                 else
                     printf("><>");
@@ -63,23 +63,23 @@ int updateScreen(fish *fishy){
 int updateFish(fish *fishy, int xSize, int ySize){
     //turning fish around
 	if(fishy->xLoc>=xSize-4){
-		fishy->xDir = 'l';
+		fishy->xDir = 0;
 	}
 	else if(fishy->xLoc<=1){
-		fishy->xDir = 'r';
+		fishy->xDir = 1;
 	}
     if(fishy->yLoc>=ySize-2){
-        fishy->yDir = 'u';
+        fishy->yDir = 0;
     }
     else if(fishy->yLoc<=1){
-        fishy->yDir = 'd';
+        fishy->yDir = 1;
     }
     //moving fish forward
-	if(fishy->yDir=='u')
+	if(fishy->yDir==0)
 		fishy->yLoc--;
 	else
 		fishy->yLoc++;
-	if(fishy->xDir=='l')
+	if(fishy->xDir==0)
 		fishy->xLoc--;
 	else
 		fishy->xLoc++;
